@@ -1,16 +1,25 @@
 import java.util.Scanner;
 
 public class BubbleSort {
-	public static void BSort(int arr[], int n) {
+	public static boolean BSort(int arr[], int n) {
+		int flag=0;
+		boolean arraySortedAlready = true;
 		for(int i = 0;i < n;i++) {
-			for(int j = 0;j < n-i-1;j++) {
+			flag=0;
+			for(int j = 0;j < n-1-i;j++) {
 				if(arr[j] > arr[j+1]) {
 					int temp = arr[j];
 					arr[j] = arr[j+1];
 					arr[j+1] = temp;
+					flag=1;
+					arraySortedAlready=false;
 				}
 			}
+			if(flag==0) {
+				break;
+			}
 		}
+		return arraySortedAlready;
 	}
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -22,10 +31,15 @@ public class BubbleSort {
 		for(int i = 0; i < n;i++) {
 			arr[i] = sc.nextInt();
 		}
-		BSort(arr,n);
-		
-		System.out.println("Sorted Array");
-		for(int i = 0;i<n;i++)
-			System.out.print(arr[i]+" ");
+		boolean sortedArray = BSort(arr,n);
+		if(sortedArray)
+			System.out.println("Array Sorted Already!!");
+		else 
+		{
+			BSort(arr,n);
+			System.out.println("Sorted Array");
+			for(int i = 0;i<n;i++)
+				System.out.print(arr[i]+" ");
+		}
 	}
 }
