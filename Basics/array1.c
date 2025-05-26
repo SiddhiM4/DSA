@@ -11,4 +11,5 @@ int main(){
         printf("%d\t",B[i]);
 
     printf("\nSize of array : %d",sizeof(A));
+    printf("\n%d",B[3]);
 }
